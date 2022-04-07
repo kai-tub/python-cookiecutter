@@ -14,7 +14,9 @@ jobs:
     # if: ${{ github.event_name == 'push' }}
     steps:
       - name: Set up Git
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: Install Poetry
         uses: snok/install-poetry@v1
         with:
@@ -54,6 +56,18 @@ jobs:
         run: |
           source $VENV
           sphinx-build docs docs/_build
+      # Must be run BEFORE GitHub Pages Deploy
+      # as the GitHub Pages action would check out a different
+      # branch; the error you would see is "no canary release available"
+      # It also requires checkout with all associated tags, i.e.,
+      # uses: actions/checkout@v3
+      # with:
+      #   fetch-depth: 0
+      - name: Run release script
+        run: bash .auto/run_auto.sh
+        env:
+          # To be able to trigger publish event
+          GITHUB_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
 {%endraw%}
 {%if cookiecutter.use_github_pages == 'y' %}
       - name: Deploy 🚀
@@ -62,10 +76,3 @@ jobs:
           branch: gh-pages # The branch the action should deploy to.
           folder: docs/_build
 {%endif%}
-{%raw%}
-      - name: Run release script
-        run: bash .auto/run_auto.sh
-        env:
-          # To be able to trigger publish event
-          GITHUB_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
-{%endraw%}
