@@ -1,0 +1,71 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+{%raw%}
+jobs:
+  check-documentation:
+    name: Build documentation
+    runs-on: ubuntu-latest
+    # Always try to build the documentation!
+    # if: ${{ github.event_name == 'push' }}
+    steps:
+      - name: Set up Git
+        uses: actions/checkout@v2
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+          installer-parallel: true
+      - name: Install dependencies
+        run: poetry install --no-interaction --no-root
+      - name: Install library
+        run: poetry install --no-interaction
+      - name: Build documentation
+        run: |
+          source $VENV
+          sphinx-build docs docs/_build
+  # Here I am assuming that the tests have been run on the PR
+  # Otherwise it could be possible that a direct push to main
+  # would not run the test code and still publish to PyPI
+  release:
+    name: Release new version on GitHub
+    runs-on: ubuntu-latest
+    needs: check-documentation
+    if: ${{ github.event_name == 'push' }}
+    steps:
+      - name: Set up Git
+        uses: actions/checkout@v2
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+          installer-parallel: true
+      - name: Install dependencies
+        run: poetry install --no-interaction --no-root
+      - name: Install library
+        run: poetry install --no-interaction
+      - name: Build documentation
+        run: |
+          source $VENV
+          sphinx-build docs docs/_build
+{%endraw%}
+{%if cookiecutter.use_github_pages == 'y' %}
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.2.5
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: docs/_build
+{%endif%}
+{%raw%}
+      - name: Run release script
+        run: bash .auto/run_auto.sh
+        env:
+          # To be able to trigger publish event
+          GITHUB_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
+{%endraw%}

@@ -1,0 +1,16 @@
+name: Test
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "{{cookiecutter.project_slug}}/**"
+  pull_request:
+    branches: [main]
+    paths-ignore:
+      - "{{cookiecutter.project_slug}}/**"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: 'echo "No build required"'
