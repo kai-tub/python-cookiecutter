@@ -15,7 +15,7 @@ jobs:
       fail-fast: true
       matrix:
 {% set matrix = cookiecutter.python_test_matrix.split(',') %}
-        python-version: [{% for v in matrix %} "{{ v }} }" {% endfor %}]
+        python-version: [{% for v in matrix %} "{{ v|string|trim }}"{% if not loop.last %},{% else %} {%endif%}{% endfor %}]
 {% raw %}
     runs-on: ubuntu-latest
     steps:
