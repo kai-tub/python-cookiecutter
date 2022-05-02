@@ -27,10 +27,9 @@ furo = "*"
 livereload = "*"
 sphinx-external-toc = "*"
 pre-commit = "*"
-# TODO: Update once myst-nb v0.14 is released
-myst-parser = {extras = ["linkify"], version = "^0.17.0"}
-myst-nb = {git = "https://github.com/executablebooks/MyST-NB.git", rev = "refactor-mystnb"}
+myst-nb = "0.14"
 ipykernel = "*"
+linkify-it-py = "*"
 
 [tool.isort]
 profile = "black"

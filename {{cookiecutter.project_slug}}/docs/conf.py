@@ -39,6 +39,7 @@ extensions = [
     # "sphinx_inline_tabs",
     # "sphinx_comments",
     # "sphinx.ext.todo",
+    # "sphinxcontrib.bibtex",
 ]
 external_toc_path = "_toc.yml"
 
