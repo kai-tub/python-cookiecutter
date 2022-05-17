@@ -34,6 +34,7 @@ extensions = [
     "sphinx.ext.autodoc",
     # Other popular choices:
     # "myst_parser",
+    # "sphinx_cli_recorder",
     # "sphinxcontrib.mermaid",
     # "sphinx_design",
     # "sphinx_inline_tabs",

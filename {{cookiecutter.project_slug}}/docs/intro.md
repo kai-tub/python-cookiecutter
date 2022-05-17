@@ -1,1 +1,5 @@
-# {{cookiecutter.project_name}}
+(intro)=
+```{include} ../README.md
+:relative-docs: docs/
+:relative-images:
+```

@@ -16,7 +16,7 @@ include = [
 
 [tool.poetry.dependencies]
 # TODO: Find a better way to set these values!
-python = "^{{cookiecutter.min_supported_python}}"
+python = ">={{cookiecutter.min_supported_python}}, <={{cookiecutter.max_supported_python}}"
 
 [tool.poetry.dev-dependencies]
 black = "*"
@@ -24,12 +24,14 @@ isort = "*"
 pytest = "*"
 Sphinx = "^4.5"
 furo = "*"
-livereload = "*"
+sphinx-autobuild = "*"
 sphinx-external-toc = "*"
 pre-commit = "*"
-myst-nb = "0.14"
+myst-nb = "*"
 ipykernel = "*"
 linkify-it-py = "*"
+jupyter = "*"
+notebook = "*"
 
 [tool.isort]
 profile = "black"
