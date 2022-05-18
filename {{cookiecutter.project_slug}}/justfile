@@ -21,7 +21,7 @@ serve-docs: build
 	{{env-cmd}} python {{justfile_directory()}}/serve_docs.py
 
 # Serve docs by callling sphinx-autobuild (works better for sphinx-template work)
-serve-docs-autobuild:
+serve-docs-autobuild: install_ipykernel
 	{{env-cmd}} sphinx-autobuild {{justfile_directory()}}/docs {{justfile_directory()}}/docs/_build --open-browser
 
 test:

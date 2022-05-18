@@ -14,8 +14,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-{% set matrix = cookiecutter.python_test_matrix.split(',') %}
-        python-version: [{% for v in matrix %} "{{ v|string|trim }}"{% if not loop.last %},{% else %} {%endif%}{% endfor %}]
+        python-version: [{PYTHON_MATRIX_HOOK}]
 {% raw %}
     runs-on: ubuntu-latest
     steps:
