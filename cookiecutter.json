@@ -24,6 +24,7 @@
         "3.11"
     ],
     "use_github_pages": "y",
+    "use_mypy": "n",
     "open_source_license": [
         "MIT license",
         "BSD license",

@@ -32,6 +32,14 @@ ipykernel = "*"
 linkify-it-py = "*"
 jupyter = "*"
 notebook = "*"
+{% if cookiecutter.use_mypy == 'y' %}
+mypy = "*"
+
+[tool.mypy]
+exclude = ["tests"]
+# common plugins:
+# plugins = "numpy.typing.mypy_plugin"
+{% endif %}
 
 [tool.isort]
 profile = "black"
