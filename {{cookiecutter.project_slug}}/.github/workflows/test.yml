@@ -34,11 +34,9 @@ jobs:
           just install
 {%- endraw %}
 {%- if cookiecutter.use_mypy == 'y' %}
-{%- raw %}
       - name: Test mypy
         run: |
-          mypy .
-{%- endraw %}
+          mypy {{ cookiecutter.project_slug }}
 {%- endif %}
 {%- raw %}
       - name: Check precommit
@@ -49,4 +47,4 @@ jobs:
         run: |
           source $VENV
           just test
-{% endraw %}
+{% endraw -%}
