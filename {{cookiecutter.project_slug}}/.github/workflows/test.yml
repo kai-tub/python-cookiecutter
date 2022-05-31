@@ -32,15 +32,15 @@ jobs:
       - name: Install dependencies
         run: |
           just install
-{% endraw %}
-{% if cookiecutter.use_mypy == 'y' %}
-{% raw %}
+{%- endraw %}
+{%- if cookiecutter.use_mypy == 'y' %}
+{%- raw %}
       - name: Test mypy
         run: |
           mypy .
-{% endraw %}
-{% endif %}
-{% raw %}
+{%- endraw %}
+{%- endif %}
+{%- raw %}
       - name: Check precommit
         run: |
           source $VENV

@@ -1,4 +1,4 @@
-{% raw %}
+{%- raw -%}
 name: Publish to PyPI
 
 on:
@@ -19,9 +19,9 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-{%endraw%}
+{%- endraw %}
           python-version: {{cookiecutter.min_supported_python}}
-{%raw%}
+{%- raw %}
       - name: Install Poetry
         uses: snok/install-poetry@v1
         with:
@@ -36,4 +36,4 @@ jobs:
         run: poetry build
       - name: Publish
         run: poetry publish --username ${{ secrets.PYPI_USER }} --password ${{ secrets.PYPI_PWD }}
-{% endraw %}
+{%- endraw %}

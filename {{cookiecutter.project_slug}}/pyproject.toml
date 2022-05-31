@@ -7,15 +7,15 @@ license = "{{cookiecutter.open_source_license}}"
 readme = "README.md"
 homepage = "{{cookiecutter.github_url}}"
 repository = "{{cookiecutter.github_url}}"
-{% if cookiecutter.use_github_pages == 'y' %}
+{%- if cookiecutter.use_github_pages == 'y' %}
 documentation = "https://github.com/{{cookiecutter.github_username}}.github.io/{{cookiecutter.project_slug}}"
-{% endif %}
+{%- endif %}
 include = [
     "LICENSE",
 ]
 
 [tool.poetry.dependencies]
-{# Uses the < syntax instead of <= because conda-forge does not work correctly with <= #}
+{#- Uses the < syntax instead of <= because conda-forge does not work correctly with <= #}
 python = "{PYTHON_VERSIONS_HOOK}"
 
 [tool.poetry.dev-dependencies]
@@ -32,14 +32,14 @@ ipykernel = "*"
 linkify-it-py = "*"
 jupyter = "*"
 notebook = "*"
-{% if cookiecutter.use_mypy == 'y' %}
+{%- if cookiecutter.use_mypy == 'y' %}
 mypy = "*"
 
 [tool.mypy]
 exclude = ["tests"]
 # common plugins:
 # plugins = "numpy.typing.mypy_plugin"
-{% endif %}
+{%- endif %}
 
 [tool.isort]
 profile = "black"
