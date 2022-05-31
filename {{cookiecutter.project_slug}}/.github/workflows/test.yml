@@ -36,6 +36,7 @@ jobs:
 {%- if cookiecutter.use_mypy == 'y' %}
       - name: Test mypy
         run: |
+          source $VENV
           mypy {{ cookiecutter.project_slug }}
 {%- endif %}
 {%- raw %}
