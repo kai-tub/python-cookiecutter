@@ -1,0 +1,41 @@
+name: Test
+on:
+  push:
+    branches: [main]
+    paths:
+      - "{{cookiecutter.__package_name}}/**"
+  pull_request:
+    branches: [main]
+    paths:
+      - "{{cookiecutter.__package_name}}/**"
+
+jobs:
+  test:
+    strategy:
+      fail-fast: true
+      matrix:
+        python-version: [{PYTHON_MATRIX_HOOK}]
+{% raw %}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Set up Python and PDM
+        uses: pdm-project/setup-pdm@main
+        with:
+{%- endraw %}
+          python-version: {{cookiecutter.min_supported_python}}
+      - name: Check precommit
+        run: |
+          pdm run pre-commit run --all-files
+{%- if cookiecutter.use_mypy == 'y' %}
+      - name: Test mypy
+        run: |
+          pdm run mypy {{ cookiecutter.__package_name }}
+{%- endif %}
+{%- raw %}
+      - name: Run tests from within PDM
+        run: |
+          pdm run tests
+{% endraw -%}

@@ -1,11 +1,13 @@
 {
     "full_name": "Kai Norman Clasen",
     "email": "k.clasen@protonmail.com",
-    "github_username": "kai-tub",
     "project_name": "Python Boilerplate",
-    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+    "__project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '-').replace('_', '-') }}",
+    "__package_name": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
     "project_short_description": "Python Boilerplate contains all the boilerplate you need to create a Python package.",
-    "github_url": "https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_slug}}/",
+    "github_username": "kai-tub",
+    "github_repo": "{{ cookiecutter.__project_slug }}",
+    "__github_url": "https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.github_repo}}/",
     "version": "0.1.0",
     "min_supported_python": [
         "3.8",

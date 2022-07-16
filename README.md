@@ -1,10 +1,10 @@
-# Opionionated Python Cookiecutter
-Mostly for personal use, with the main features:
+# Opinionated Python Cookiecutter
+Primarily for personal use, with the main features:
 - GitHub Actions out of the box
-- Python Packaging with Poetry
+- Python packaging with PDM
 - Pre-commit hooks to ensure code quality
-- black & isort by default
-- justfile for modern & cross-platform Makefile alternative
+- `black` & `isort` by default
+- `justfile`'s for modern & cross-platform Makefile alternative
 - auto for CI/CD
 - Modern Sphinx with furo theme and markdown by default
     - Usage of `livereload` to quickly serve docs and live-reload
@@ -16,7 +16,7 @@ Mostly for personal use, with the main features:
 
 ## After install:
 - Activate welcome-bot if necessary
-- Ensure that "main" branch is actually the "main" branch
+- Ensure that "main" branch is actually the `main` branch
 - Add the following secrets to GitHub
     - PYPI_USER (pypi.yml)
     - PYPI_PWD (pypi.yml)

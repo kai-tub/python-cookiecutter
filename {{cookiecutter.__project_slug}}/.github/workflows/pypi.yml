@@ -9,6 +9,7 @@ on:
 # env:
 #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+# TODO: Update this to PDM
 jobs:
   upload_assets:
     name: Create/Upload assets

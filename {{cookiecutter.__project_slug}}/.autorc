@@ -11,7 +11,7 @@
         ]
     ],
     "owner": "{{ cookiecutter.github_username }}",
-    "repo": "{{ cookiecutter.project_slug }}",
+    "repo": "{{ cookiecutter.github_repo }}",
     "name": "{{ cookiecutter.full_name }}",
     "email": "{{ cookiecutter.email }}"
 }

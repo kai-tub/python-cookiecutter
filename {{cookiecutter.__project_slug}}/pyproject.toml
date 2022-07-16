@@ -1,0 +1,88 @@
+[project]
+name = "{{cookiecutter.__project_slug}}"
+version = "{{cookiecutter.version}}"
+description = "{{cookiecutter.project_short_description}}"
+authors = [
+    {name = "{{cookiecutter.full_name}}", email= "<{{cookiecutter.email}}>"},
+]
+license = {text = "{{cookiecutter.open_source_license}}"}
+readme = "README.md"
+#- Uses the < syntax instead of <= because conda-forge does not work correctly with <=
+# deps-start
+requires-python = "{PYTHON_VERSIONS_HOOK}"
+dependencies = [
+
+]
+# deps-end
+
+[project.urls]
+homepage = "{{cookiecutter.__github_url}}"
+repository = "{{cookiecutter.__github_url}}"
+{%- if cookiecutter.use_github_pages == 'y' %}
+documentation = "https://github.com/{{cookiecutter.github_username}}.github.io/{{cookiecutter.github_repo}}"
+{%- endif %}
+
+[build-system]
+requires = ["pdm-pep517>=1.0.0"]
+build-backend = "pdm.pep517.api"
+
+[tool.pdm.build]
+includes = ["LICENSE"]
+
+[tool.pdm.dev-dependencies]
+docs = [
+    "myst-nb<1.0,>=0.16",
+    "Sphinx<6.0,>=4.5",
+    "sphinx-autobuild",
+    "sphinx-external-toc",
+    "linkify-it-py",
+    "furo",
+]
+test = [
+    "pytest",
+    "pre-commit",
+    "jupyter",
+    "notebook",
+]
+lint = [
+    "black",
+    "isort",
+    "nbstripout",
+{%- if cookiecutter.use_mypy == 'y' %}
+    "mypy",
+{%- endif %}
+]
+
+{%- if cookiecutter.use_mypy == 'y' %}
+[tool.mypy]
+exclude = ["tests"]
+# common plugins:
+# plugins = "numpy.typing.mypy_plugin"
+{%- endif %}
+
+[tool.isort]
+profile = "black"
+
+{# TODO: Maybe also install ipykernel by default #}
+{# {{env-cmd}} python -m ipykernel install --user --name {{env-name}} #}
+[tool.pdm.scripts]
+black = "black ."
+isort = "isort ."
+{# FUTURE: Maybe add recursive nbstripout command? #}
+mypy = "mypy ."
+lint.composite = [
+    "black",
+    "isort",
+{%- if cookiecutter.use_mypy == 'y' %}
+    "mypy",
+{%- endif %}
+]
+lint.help = "Will check if all files are formatted with black & isort"
+
+build-docs.cmd = "sphinx-build docs docs/_build/"
+build-docs.help = "Build Sphinx documentation"
+serve-sphinx-docs.cmd = "sphinx-autobuild docs docs/_build --open-browser"
+serve-sphinx-docs.help = "Serve the Sphinx documentation with sphinx-autobuild"
+
+tests.cmd = "pytest tests/"
+tests.help = "Call test-runner"
