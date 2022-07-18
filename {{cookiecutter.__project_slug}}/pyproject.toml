@@ -3,7 +3,7 @@ name = "{{cookiecutter.__project_slug}}"
 version = "{{cookiecutter.version}}"
 description = "{{cookiecutter.project_short_description}}"
 authors = [
-    {name = "{{cookiecutter.full_name}}", email= "<{{cookiecutter.email}}>"},
+    {name = "{{cookiecutter.full_name}}", email= "{{cookiecutter.email}}"},
 ]
 license = {text = "{{cookiecutter.open_source_license}}"}
 readme = "README.md"
@@ -19,7 +19,7 @@ dependencies = [
 homepage = "{{cookiecutter.__github_url}}"
 repository = "{{cookiecutter.__github_url}}"
 {%- if cookiecutter.use_github_pages == 'y' %}
-documentation = "https://github.com/{{cookiecutter.github_username}}.github.io/{{cookiecutter.github_repo}}"
+documentation = "{{cookiecutter.github_username}}.github.io/{{cookiecutter.github_repo}}"
 {%- endif %}
 
 [build-system]

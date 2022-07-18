@@ -26,6 +26,9 @@ jobs:
         with:
 {%- endraw %}
           python-version: {{cookiecutter.min_supported_python}}
+      - name: Install dependencies
+        run: |
+          pdm sync --dev
       - name: Check precommit
         run: |
           pdm run pre-commit run --all-files
