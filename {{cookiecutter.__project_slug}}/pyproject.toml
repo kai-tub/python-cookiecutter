@@ -45,7 +45,7 @@ test = [
     "notebook",
 ]
 lint = [
-    "black",
+    "black[jupyter]",
     "isort",
     "nbstripout",
 {%- if cookiecutter.use_mypy == 'y' %}
