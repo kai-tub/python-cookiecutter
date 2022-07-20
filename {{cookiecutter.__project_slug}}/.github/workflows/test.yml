@@ -28,17 +28,47 @@ jobs:
 {%- endraw %}
       - name: Install dependencies
         run: |
-          pdm install --dev
+          pdm install --dev --group :all
       - name: Check precommit
         run: |
           pdm run pre-commit run --all-files
 {%- if cookiecutter.use_mypy == 'y' %}
       - name: Test mypy
         run: |
-          pdm run mypy {{ cookiecutter.__package_name }}
+          pdm run check_types
 {%- endif %}
 {%- raw %}
       - name: Run tests from within PDM
         run: |
           pdm run tests
+      # Enable if coveragepy is run within tests
+      # assumes parallel mode!
+      # - uses: actions/upload-artifact@v2
+      #   with:
+      #     name: coverage-data
+      #     path: ".coverage.*"
+      #     # allow to skip specific python version
+      #     if-no-files-found: ignore
 {% endraw -%}
+  # coverage_reporter:
+  #   runs-on: ubuntu-latest
+  #   needs: test
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #       with:
+  #         fetch-depth: 0
+  #     - name: Set up Python and PDM
+  #       uses: pdm-project/setup-pdm@main
+  #       with:
+  #         python-version: "{{cookiecutter.min_supported_python}}"
+  #     - name: Install coverage reporting deps
+  #       run: |
+  #         pdm install --group test
+  #     - uses: actions/download-artifact@v2
+  #       with:
+  #         name: coverage-data
+  #     - name: Code coverage-reporter
+  #       uses: tj-actions/coverage-reporter@v5.1
+  #       with:
+  #         # assumes pdm uses coverage merge
+  #         coverage-command: "pdm run coverage_report"

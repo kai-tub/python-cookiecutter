@@ -63,19 +63,18 @@ exclude = ["tests"]
 [tool.isort]
 profile = "black"
 
-{# TODO: Maybe also install ipykernel by default #}
-{# {{env-cmd}} python -m ipykernel install --user --name {{env-name}} #}
+{#- TODO: Maybe also install ipykernel by default #}
+{#- {{env-cmd}} python -m ipykernel install --user --name {{env-name}} #}
 [tool.pdm.scripts]
 black = "black ."
 isort = "isort ."
-{# FUTURE: Maybe add recursive nbstripout command? #}
-mypy = "mypy ."
+{#- FUTURE: Maybe add recursive nbstripout command? #}
+# check_types = "mypy {{cookiecutter.__package_name}}"
+
 lint.composite = [
     "black",
     "isort",
-{%- if cookiecutter.use_mypy == 'y' %}
-    "mypy",
-{%- endif %}
+    # "check_types",
 ]
 lint.help = "Will check if all files are formatted with black & isort"
 
@@ -84,11 +83,16 @@ build-docs.help = "Build Sphinx documentation"
 serve-sphinx-docs.cmd = "sphinx-autobuild docs docs/_build --open-browser"
 serve-sphinx-docs.help = "Serve the Sphinx documentation with sphinx-autobuild"
 
-# if I would like to include coverage report in workflow
-# tests = "coverage run --source common_nb_preprocessors -m pytest tests"
-#   - name: Code coverage-reporter
-#     uses: tj-actions/coverage-reporter@v5.1
-#     with:
-#       coverage-command: "pdm run coverage_report"
-tests.cmd = "pytest tests/"
-tests.help = "Call test-runner"
+tests = "pytest tests/"
+# If coverage is desired:
+# tests = "coverage run --parallel --source {{cookiecutter.__package_name}} -m pytest tests"
+# coverage_report.composite = [
+#     "coverage combine",
+#     "coverage report --fail-under 95",
+# ]
+# coverage_html_report = "coverage html"
+# coverage_html.composite = [
+#     "tests",
+#     "coverage_html_report"
+# ]
+# coverage_html.help = "Run the coverage with pytest and produce the html"

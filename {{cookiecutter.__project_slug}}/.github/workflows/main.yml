@@ -24,7 +24,7 @@ jobs:
         uses: pdm-project/setup-pdm@main
         with:
 {%- endraw %}
-          python-version: {{cookiecutter.min_supported_python}}
+          python-version: "{{cookiecutter.min_supported_python}}"
 {%- raw %}
       - name: Install dependencies
         run: |
