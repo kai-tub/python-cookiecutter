@@ -19,7 +19,7 @@ dependencies = [
 homepage = "{{cookiecutter.__github_url}}"
 repository = "{{cookiecutter.__github_url}}"
 {%- if cookiecutter.use_github_pages == 'y' %}
-documentation = "{{cookiecutter.github_username}}.github.io/{{cookiecutter.github_repo}}"
+documentation = "https://{{cookiecutter.github_username}}.github.io/{{cookiecutter.github_repo}}"
 {%- endif %}
 
 [build-system]
