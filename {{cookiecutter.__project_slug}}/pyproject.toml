@@ -68,11 +68,11 @@ profile = "black"
 [tool.pdm.scripts]
 pre-commit = "pre-commit run --all-files"
 {#- FUTURE: Maybe add recursive nbstripout command? #}
-# check_types = "mypy {{cookiecutter.__package_name}}"
+{% if cookiecutter.use_mypy != 'y' %}# {% endif -%} check-types = "mypy src"
 
 lint.composite = [
     "pre-commit",
-    # "check_types",
+    {% if cookiecutter.use_mypy != 'y' %}# {% endif -%} "check-types",
 ]
 lint.help = "Will check if all files are formatted with black & isort"
 
