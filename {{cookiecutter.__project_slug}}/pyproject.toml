@@ -71,8 +71,6 @@ pre-commit = "pre-commit run --all-files"
 # check_types = "mypy {{cookiecutter.__package_name}}"
 
 lint.composite = [
-    "black",
-    "isort",
     "pre-commit",
     # "check_types",
 ]
