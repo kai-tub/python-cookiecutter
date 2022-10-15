@@ -31,8 +31,8 @@ includes = ["LICENSE"]
 
 [tool.pdm.dev-dependencies]
 docs = [
-    "myst-nb<1.0,>=0.16",
-    "Sphinx<6.0,>=4.5",
+    "myst-nb>=0.16",
+    "Sphinx>=4.5",
     "sphinx-autobuild",
     "sphinx-external-toc",
     "linkify-it-py",
@@ -66,14 +66,14 @@ profile = "black"
 {#- TODO: Maybe also install ipykernel by default #}
 {#- {{env-cmd}} python -m ipykernel install --user --name {{env-name}} #}
 [tool.pdm.scripts]
-black = "black ."
-isort = "isort ."
+pre-commit = "pre-commit run --all-files"
 {#- FUTURE: Maybe add recursive nbstripout command? #}
 # check_types = "mypy {{cookiecutter.__package_name}}"
 
 lint.composite = [
     "black",
     "isort",
+    "pre-commit",
     # "check_types",
 ]
 lint.help = "Will check if all files are formatted with black & isort"

@@ -23,10 +23,6 @@ if [[ -z "$(command -v pdm)" ]]; then
     error "requires PDM to bump version!"
 fi
 
-# Until https://github.com/carstencodes/pdm-bump/pull/2 is merged
-if [[ "$bumpType" = "patch" ]]; then
-    bumpType="micro"
-fi
 # bump version
 pdm bump "$bumpType"
 
