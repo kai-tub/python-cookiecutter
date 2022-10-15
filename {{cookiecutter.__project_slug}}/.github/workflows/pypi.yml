@@ -21,7 +21,6 @@ jobs:
       - name: Install dependencies
         run: |
           pdm sync --dev --group docs
-          pdm plugin add pdm-bump
           pdm run build-docs
       - name: Publish
         run: pdm publish --username ${{ secrets.PYPI_USER }} --password ${{ secrets.PYPI_PWD }}

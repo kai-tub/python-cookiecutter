@@ -66,7 +66,7 @@ profile = "black"
 {#- TODO: Maybe also install ipykernel by default #}
 {#- {{env-cmd}} python -m ipykernel install --user --name {{env-name}} #}
 [tool.pdm.scripts]
-pre-commit = "pre-commit run --all-files"
+check-pre-commit = "pre-commit run --all-files"
 {#- FUTURE: Maybe add recursive nbstripout command? #}
 {% if cookiecutter.use_mypy != 'y' %}# {% endif -%} check-types = "mypy src"
 
