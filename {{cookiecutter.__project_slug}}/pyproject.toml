@@ -27,7 +27,10 @@ requires = ["pdm-pep517>=1.0.0"]
 build-backend = "pdm.pep517.api"
 
 [tool.pdm.build]
-includes = ["LICENSE"]
+includes = [
+    "LICENSE",
+    "src",
+]
 
 [tool.pdm.dev-dependencies]
 docs = [
@@ -37,6 +40,7 @@ docs = [
     "sphinx-external-toc",
     "linkify-it-py",
     "furo",
+    "common-nb-preprocessors>=1",
 ]
 test = [
     "pytest",
@@ -64,7 +68,7 @@ exclude = ["tests"]
 profile = "black"
 
 {#- TODO: Maybe also install ipykernel by default #}
-{#- {{env-cmd}} python -m ipykernel install --user --name {{env-name}} #}
+{# {{env-cmd}} python -m ipykernel install --user --name {{env-name}} #}
 [tool.pdm.scripts]
 check-pre-commit = "pre-commit run --all-files"
 {#- FUTURE: Maybe add recursive nbstripout command? #}
