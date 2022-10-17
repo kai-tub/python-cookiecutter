@@ -61,13 +61,12 @@ myst_enable_extensions = [
     "tasklist",
 ]
 
-# TODO: Enable by default once by package is stable
-# nb_custom_formats = {
-#     ".ipynb": [
-#         "common_nb_preprocessors.myst_nb_metadata_injector",
-#         {"prefix": "#", "delimiter": "\s*=\s*"},
-#     ]
-# }
+nb_custom_formats = {
+    ".ipynb": [
+        "common_nb_preprocessors.myst_nb_metadata_injector",
+        {"prefix": "#", "delimiter": "="},
+    ]
+}
 
 # Recommendation from furo
 # https://pradyunsg.me/furo/kitchen-sink/api/
