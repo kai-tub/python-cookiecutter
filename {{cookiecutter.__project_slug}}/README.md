@@ -1,7 +1,7 @@
 # {{cookiecutter.project_name}}
 > {{cookiecutter.project_short_description}}
 
-[![Tests](https://img.shields.io/github/workflow/status/{{cookiecutter.github_username}}/{{cookiecutter.__project_slug}}/CI?color=dark-green&label=%20Tests)]({{cookiecutter.__github_url}}/actions/workflows/main.yml)
+[![Tests](https://img.shields.io/github/workflow/status/{{cookiecutter.github_username}}/{{cookiecutter.github_repo}}/CI?color=dark-green&label=%20Tests)]({{cookiecutter.__github_url}}/actions/workflows/main.yml)
 {%- if cookiecutter.use_mypy == 'y' %}
 [![MyPy Type Checker](https://img.shields.io/badge/%20type_checker-mypy-%231674b1?style=flat&color=dark-green)](http://mypy-lang.org/)
 {%- endif %}
