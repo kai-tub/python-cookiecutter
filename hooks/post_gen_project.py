@@ -23,7 +23,9 @@ if min_python == max_python:
     pyproject_python_str = python_version
     test_matrix_str = python_version
 else:
-    pyproject_python_str = f">={min_python.major}.{min_python.minor}, <{max_python.major}.{max_python.minor + 1}"
+    # pyproject_python_str = f">={min_python.major}.{min_python.minor}, <{max_python.major}.{max_python.minor + 1}"
+    # Disable the upper bound for Python version, as it has caused more issues
+    pyproject_python_str = f">={min_python.major}.{min_python.minor}"
     # assume max_minor > min_minor
     test_matrix_str = ",".join(
         f'"{min_python.major}.{m}"'
