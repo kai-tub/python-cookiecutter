@@ -68,6 +68,9 @@ nb_custom_formats = {
     ]
 }
 
+# always fail CI pipeline when nb cannot be executed
+nb_execution_raise_on_error = True
+
 # Recommendation from furo
 # https://pradyunsg.me/furo/kitchen-sink/api/
 autodoc_typehints = "description"
