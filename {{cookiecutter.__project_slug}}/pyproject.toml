@@ -75,7 +75,7 @@ check-pre-commit = "pre-commit run --all-files"
 {% if cookiecutter.use_mypy != 'y' %}# {% endif -%} check-types = "mypy src"
 
 lint.composite = [
-    "pre-commit",
+    "check-pre-commit",
     {% if cookiecutter.use_mypy != 'y' %}# {% endif -%} "check-types",
 ]
 lint.help = "Will check if all files are formatted with black & isort"
