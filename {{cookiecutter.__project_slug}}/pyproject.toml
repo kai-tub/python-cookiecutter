@@ -41,6 +41,7 @@ docs = [
     "linkify-it-py",
     "furo",
     "common-nb-preprocessors>=1",
+    "furo-myst-nb-css-fixes",
 ]
 test = [
     "pytest",

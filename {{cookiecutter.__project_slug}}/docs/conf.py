@@ -32,6 +32,7 @@ extensions = [
     "sphinx_external_toc",
     "sphinx.ext.intersphinx",
     "sphinx.ext.autodoc",
+    "furo",
     # Other popular choices:
     # "sphinx_design",
     # "myst_parser",
@@ -42,6 +43,7 @@ extensions = [
     # "sphinx_comments",
     # "sphinx.ext.todo",
     # "sphinxcontrib.bibtex",
+    "furo_myst_nb_css_fixes",
 ]
 external_toc_path = "_toc.yml"
 
